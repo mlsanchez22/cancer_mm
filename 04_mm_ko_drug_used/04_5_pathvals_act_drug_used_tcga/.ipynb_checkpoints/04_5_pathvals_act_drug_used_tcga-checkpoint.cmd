@@ -1,2 +1,0 @@
-Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_5_pathvals_act_drug_used_tcga/04_5_pathvals_act_drug_used_tcga.R tcga_brca 5564
-Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_5_pathvals_act_drug_used_tcga/04_5_pathvals_act_drug_used_tcga.R tcga_coad 1441	
