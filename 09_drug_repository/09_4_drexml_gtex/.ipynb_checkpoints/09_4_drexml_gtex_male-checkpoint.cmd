@@ -1,9 +1,0 @@
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/breast_tcga_brca/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/colon_tcga_coad/launcher_custom_circuits_male.sh
-#/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/esophagus_tcga_esca/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/brain_tcga_lgg/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/lung_tcga_luad/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/lung_tcga_lusc/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/pancreas_tcga_paad/launcher_custom_circuits_male.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/skin_tcga_skcm/launcher_custom_circuits_male.sh
-#/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/stomach_tcga_stad/launcher_custom_circuits_male.sh
