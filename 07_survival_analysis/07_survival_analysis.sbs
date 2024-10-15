@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#SBATCH --job-name=surv
+#SBATCH --mail-type=END
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=300G
+#SBATCH --time=1-24:00:00
+#SBATCH --output=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/out/surv_%A_%a.out
+#SBATCH --error=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/err/surv_%A_%a.err
+#SBATCH --array=1-9%9
+#SBATCH --export=ALL
+######################
+# Begin work section #
+#####################
+
+eval "$(conda shell.bash hook)"
+conda activate my_r_environment
+
+$(head -${SLURM_ARRAY_TASK_ID} /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.cmd | tail -1)

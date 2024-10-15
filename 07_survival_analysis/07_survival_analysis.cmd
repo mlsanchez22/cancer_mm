@@ -1,0 +1,9 @@
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_brca
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_coad
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_esca
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_lgg
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_luad
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_lusc
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_paad
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_skcm
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/07_survival_analysis/07_survival_analysis.R tcga_stad
