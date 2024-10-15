@@ -1,0 +1,22 @@
+#! /bin/bash
+
+#SBATCH --job-name=norm_hipa_tcga
+#SBATCH --mail-type=END
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=300G
+#SBATCH --time=1-24:00:00
+#SBATCH --output=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/out/inf_tcga_%A_%a.out
+#SBATCH --error=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/err/inf_tcga_tcga_%A_%a.err
+#SBATCH --array=1-33%33
+#SBATCH --export=ALL
+######################
+# Begin work section #
+#####################
+
+eval "$(conda shell.bash hook)"
+conda activate my_r_environment
+
+$(head -${SLURM_ARRAY_TASK_ID} /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/02_selection_samples/02_1_ext_information_patients_tcga/02_1_ext_information_patients_tcga.cmd | tail -1)
+
+
