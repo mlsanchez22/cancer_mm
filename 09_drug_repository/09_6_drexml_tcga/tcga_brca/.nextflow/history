@@ -1,0 +1,1 @@
+2024-06-28 22:41:46	8m 56s	agitated_linnaeus	OK	81a7476e61b7320b813b30583a9d69a5	92737087-b049-4337-b748-2e46f61a081e	nextflow run /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/main.nf -profile slurm,singularity -resume -params-file params_custom_circuits_male.yml
