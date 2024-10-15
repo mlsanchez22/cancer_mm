@@ -1,0 +1,2 @@
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_6_pathvals_act_drug_used_gtex/04_6_pathvals_act_drug_used_gtex.R 5564
+Rscript /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_6_pathvals_act_drug_used_gtex/04_6_pathvals_act_drug_used_gtex.R 1441
