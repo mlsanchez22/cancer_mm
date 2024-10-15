@@ -1,0 +1,37 @@
+# paths can be URIs or local
+
+# otuput folder
+output_folder: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_6_drexml_tcga"
+
+#Drugbank compressed XML file
+drugbank: "https://zenodo.org/records/7969017/files/drugbank-v050108.xml.gz"
+
+# The Anatomical Therapeutic Chemical (ATC) Classification table
+atc: "https://zenodo.org/records/7969017/files/ATC.csv.gz"
+
+# HiPathia's list of physiological KEGG signaling pathways with GO/Uniprot functional annotations
+phys_paths: "https://zenodo.org/records/7969017/files/physiological_paths.tsv"
+
+# The Genotype-Tissue Expression (GTEx) RNA-Seq gene read counts
+gtex: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_5_genexpresion_tcga/tcga_brca_geneexp_female.tsv"
+# Disgenet disease map building
+#use_disgenet: true
+#disgenet: "https://www.disgenet.org/static/disgenet_ap1/files/downloads/curated_gene_disease_associations.tsv.gz"
+#disgenet_threshold: "0.75"
+#disgenet_disease_id: "C0036341"
+
+
+# Hipathia disease map circuit file. Uncomment to use a custom disease map list of circuits
+
+disease_map_circuits: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_2_circuits_sign_limma_tumvsctrl/circuits_female_tcga_brca.tsv"
+
+
+# Disease map gene list. Uncoment to use a build a custom disease map from a list of genes
+# disease_map_gene_list: "genelist.tsv
+
+# Uncomment the following lines to feed drexml with preprocessed GTEx files (skip preproc step)
+#drexml_gene_expr_norm: "/home/dlopez/projects/drexml-pipeline/schizorwd/results/preproc/GTEx/GTEx_norm_symbol.tsv"
+#drexml_pathvals: "/home/dlopez/projects/drexml-pipeline/schizorwd/results/preproc/GTEx/path_vals_transposed.tsv"
+
+# Uncomment the following line to feed drexml with a custom gene target list (skip drugbank preprocess)
+drexml_target_genes: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_3_drugbank_used/09_3_drugbank_gene_targets_tcga_brca.tsv"

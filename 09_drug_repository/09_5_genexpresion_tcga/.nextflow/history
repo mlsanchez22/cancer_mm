@@ -1,0 +1,1 @@
+2024-06-28 19:27:36	6h 9m 39s	small_gauss	ERR	81a7476e61b7320b813b30583a9d69a5	0eef122c-8e6b-47a9-989a-26553ac1bd54	nextflow run /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/main.nf -profile slurm,singularity -resume -params-file params_custom_circuits.yml
