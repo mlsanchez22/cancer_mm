@@ -1,0 +1,9 @@
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_brca/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_coad/launcher_custom_circuits_male.sh
+#/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_esca/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_lgg/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_luad/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_lusc/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_paad/launcher_custom_circuits_male.sh
+/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_skcm/launcher_custom_circuits_male.sh
+#/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_6_drexml_tcga/tcga_stad/launcher_custom_circuits_male.sh
