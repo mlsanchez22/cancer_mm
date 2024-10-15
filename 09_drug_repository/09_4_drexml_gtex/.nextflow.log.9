@@ -1,0 +1,249 @@
+Jul-01 17:26:26.975 [main] DEBUG nextflow.cli.Launcher - $> nextflow run /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/main.nf -profile slurm,singularity -resume -params-file /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/lung_tcga_lusc/params_custom_circuits_female.yml
+Jul-01 17:26:27.391 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Jul-01 17:26:27.414 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/mlopez/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Jul-01 17:26:27.497 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jul-01 17:26:27.503 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jul-01 17:26:27.505 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jul-01 17:26:27.553 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jul-01 17:26:27.594 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/nextflow.config
+Jul-01 17:26:27.600 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/nextflow.config
+Jul-01 17:26:27.672 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/mlopez/.nextflow/secrets/store.json
+Jul-01 17:26:27.674 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@4690f583] - activable => nextflow.secret.LocalSecretsProvider@4690f583
+Jul-01 17:26:27.810 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `slurm,singularity`
+Jul-01 17:26:29.446 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, debug, singularity, docker]
+Jul-01 17:26:29.572 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jul-01 17:26:29.601 [main] DEBUG nextflow.cli.CmdRun - Launching `/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/main.nf` [spontaneous_galileo] DSL2 - revision: 81a7476e61
+Jul-01 17:26:29.602 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jul-01 17:26:29.603 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jul-01 17:26:29.704 [main] DEBUG nextflow.Session - Session UUID: 27516f41-b59b-48e5-bccc-824f51e4b06c
+Jul-01 17:26:29.705 [main] DEBUG nextflow.Session - Run name: spontaneous_galileo
+Jul-01 17:26:29.705 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jul-01 17:26:29.715 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jul-01 17:26:29.719 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-01 17:26:29.884 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (08:19 CEST)
+  System: Linux 4.18.0-348.12.2.el8_5.x86_64
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 17.0.11-internal+0-adhoc..src
+  Encoding: UTF-8 (UTF-8)
+  Process: 1346369@c02 [10.3.1.2]
+  CPUs: 1 - Mem: 300 GB (299.2 GB) - Swap: 0 (0)
+Jul-01 17:26:30.275 [main] DEBUG nextflow.Session - Work-dir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work [lustre]
+Jul-01 17:26:30.283 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/bin
+Jul-01 17:26:30.292 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jul-01 17:26:30.324 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jul-01 17:26:30.426 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jul-01 17:26:30.468 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jul-01 17:26:30.951 [main] DEBUG nextflow.Session - Session start
+Jul-01 17:26:30.965 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_4_drexml_gtex/lung_tcga_lusc/lung_tcga_lusc_female/report/execution_trace.txt
+Jul-01 17:26:32.535 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jul-01 17:26:34.401 [main] INFO  nextflow.Nextflow - Input parameters:
+Jul-01 17:26:34.403 [main] INFO  nextflow.script.BaseScript - disease_map_circuits: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_2_circuits_sign_limma_tumvsctrl/circuits_female_tcga_lusc.tsv
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - use_disgenet: true
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - drexml_target_genes: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_3_drugbank_used/09_3_drugbank_gene_targets_tcga_lusc.tsv
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - gtex: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_1_genexpresion_gtex_tiss_ctrol/gtex_geneexp_female_Lung.tsv
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - atc: https://zenodo.org/records/7969017/files/ATC.csv.gz
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - drugbank: https://zenodo.org/records/7969017/files/drugbank-v050108.xml.gz
+Jul-01 17:26:34.404 [main] INFO  nextflow.script.BaseScript - output_folder: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_4_drexml_gtex/lung_tcga_lusc/lung_tcga_lusc_female
+Jul-01 17:26:34.405 [main] INFO  nextflow.script.BaseScript - container__python: dlopezbioinfo/dr-pipeline:python-master-3016828
+Jul-01 17:26:34.405 [main] INFO  nextflow.script.BaseScript - container__r: dlopezbioinfo/dr-pipeline:r-master-f7f998c
+Jul-01 17:26:34.405 [main] INFO  nextflow.script.BaseScript - container__drexml: dlopezbioinfo/dr-pipeline:drexml-master-1db6105
+Jul-01 17:26:34.405 [main] INFO  nextflow.script.BaseScript - phys_paths: https://zenodo.org/records/7969017/files/physiological_paths.tsv
+Jul-01 17:26:34.410 [main] INFO  nextflow.Nextflow - --------------------------
+
+Jul-01 17:26:34.507 [main] INFO  nextflow.Nextflow - INFO: target genes taken from /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_3_drugbank_used/09_3_drugbank_gene_targets_tcga_lusc.tsv
+Jul-01 17:26:34.614 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name PARSE_HIPATHIA
+Jul-01 17:26:34.622 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.622 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.636 [main] DEBUG nextflow.executor.Executor - [warm up] executor > slurm
+Jul-01 17:26:34.655 [main] DEBUG n.processor.TaskPollingMonitor - Creating task monitor for executor 'slurm' > capacity: 100; pollInterval: 5s; dumpInterval: 5m 
+Jul-01 17:26:34.656 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: slurm)
+Jul-01 17:26:34.686 [main] DEBUG n.executor.AbstractGridExecutor - Creating executor 'slurm' > queue-stat-interval: 1m
+Jul-01 17:26:34.794 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:high_mem` matches labels `high_mem` for process with name HIPATHIA_CONV
+Jul-01 17:26:34.812 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.812 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.822 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name ANNOTATE_HIPATHIA
+Jul-01 17:26:34.824 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.824 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.829 [main] INFO  nextflow.Nextflow - INFO: Disease map circuit list taken from /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_2_circuits_sign_limma_tumvsctrl/circuits_female_tcga_lusc.tsv
+Jul-01 17:26:34.847 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:high_mem` matches labels `high_mem` for process with name COLLAPSE_GTEX_ENSEMBL
+Jul-01 17:26:34.848 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.848 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.855 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:high_mem` matches labels `high_mem` for process with name GTEX_ENTREZ_CONV
+Jul-01 17:26:34.857 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.857 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.878 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:high_mem` matches labels `high_mem` for process with name COLLAPSE_GTEX_SYMBOL
+Jul-01 17:26:34.882 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.882 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:34.890 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name NORMALIZE_GTEX
+Jul-01 17:26:34.892 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:34.892 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.011 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name CIRCUIT_ACTIVITY_GTEX
+Jul-01 17:26:35.013 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.013 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.037 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:single_proc` matches labels `single_proc` for process with name CONCATENATE_CIRCUIT_ACTIVITIES
+Jul-01 17:26:35.038 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.038 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.048 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name GTEX_SYMBOL_CONV
+Jul-01 17:26:35.050 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.059 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.066 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name CREATE_DREXML_ENV
+Jul-01 17:26:35.070 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.070 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.096 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:high_proc` matches labels `high_proc` for process with name RUN_DREXML
+Jul-01 17:26:35.098 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.108 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.115 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withLabel:low_proc` matches labels `low_proc` for process with name PLOT_DREXML
+Jul-01 17:26:35.116 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: slurm
+Jul-01 17:26:35.116 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'slurm'
+Jul-01 17:26:35.130 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: HIPATHIA_CONV, GTEX_SYMBOL_CONV, DISGENET_CONV, GENES_FROM_DISGENET, COLLAPSE_GTEX_ENSEMBL, RUN_DREXML, CONCATENATE_CIRCUIT_ACTIVITIES, DRUGBANK_GENE_TARGETS, NORMALIZE_GTEX, PLOT_DREXML, GTEX_ENTREZ_CONV, PARSE_HIPATHIA, GENES_TO_CIRCUITS, CALCULATE_CIRCUIT_ACTIVITY, NORMALIZE_EXPR, COLLAPSE_GTEX_SYMBOL, CIRCUIT_ACTIVITY_GTEX, GET_GTEX_MAP, GENE_ID_CONVERSION, CREATE_DREXML_ENV, PARSE_DRUGBANK_XML, DRUGBANK_CONV, ANNOTATE_DRUGBANK, COLLAPSE_COUNTS, ANNOTATE_HIPATHIA
+Jul-01 17:26:35.130 [main] DEBUG nextflow.Session - Igniting dataflow network (20)
+Jul-01 17:26:35.170 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PARSE_HIPATHIA
+Jul-01 17:26:35.171 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > HIPATHIA_CONV
+Jul-01 17:26:35.193 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > ANNOTATE_HIPATHIA
+Jul-01 17:26:35.193 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > COLLAPSE_GTEX_ENSEMBL
+Jul-01 17:26:35.193 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GTEX_ENTREZ_CONV
+Jul-01 17:26:35.194 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > COLLAPSE_GTEX_SYMBOL
+Jul-01 17:26:35.194 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NORMALIZE_GTEX
+Jul-01 17:26:35.194 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CIRCUIT_ACTIVITY_GTEX
+Jul-01 17:26:35.195 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CONCATENATE_CIRCUIT_ACTIVITIES
+Jul-01 17:26:35.195 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > GTEX_SYMBOL_CONV
+Jul-01 17:26:35.195 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CREATE_DREXML_ENV
+Jul-01 17:26:35.195 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > RUN_DREXML
+Jul-01 17:26:35.196 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > PLOT_DREXML
+Jul-01 17:26:35.196 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_3151dc3f7cdd9468: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/concatenate_circuit_activities.nf
+  Script_9f619dcc4b0dd073: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/create_exp_design.nf
+  Script_87b0ae071c2a3574: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/main.nf
+  Script_66a0fd290bd808ab: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/parse_hipathia.nf
+  Script_bf0306db0f66030e: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/normalize_expr.nf
+  Script_6101e3325aa4b54a: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/genes_from_disgenet.nf
+  Script_2fbc0b4d2fc6999a: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/plot_drexml.nf
+  Script_209bc76c4dc5e6ed: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/gtex_symbol_conv.nf
+  Script_2d5ac96d06ab73ea: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/collapse_counts.nf
+  Script_2d1dc3c26659ce89: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/gene_to_circuits.nf
+  Script_1088a6a041c1647c: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/parse_drugbank_xml.nf
+  Script_dd415bd1b6cfe24d: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/annotate_drugbank.nf
+  Script_291bf4d9895dd83a: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/gene_id_conversion.nf
+  Script_0582a06066bed48f: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/annotate_hipathia.nf
+  Script_3dcf47c52b928fd6: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/drugbank_gene_targets.nf
+  Script_9326c94c53bac523: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/get_gtex_map.nf
+  Script_836753c98ad5abaf: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/calculate_circuit_activity.nf
+  Script_50dc100b27d26a71: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/./modules/run_drexml.nf
+Jul-01 17:26:35.197 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jul-01 17:26:35.197 [main] DEBUG nextflow.Session - Session await
+Jul-01 17:26:35.643 [Actor Thread 2] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://dlopezbioinfo/dr-pipeline:r-master-f7f998c; path=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/singularity/dlopezbioinfo-dr-pipeline-r-master-f7f998c.img
+Jul-01 17:26:35.701 [Actor Thread 17] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://dlopezbioinfo/dr-pipeline:python-master-3016828; path=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/singularity/dlopezbioinfo-dr-pipeline-python-master-3016828.img
+Jul-01 17:26:35.915 [Actor Thread 15] INFO  nextflow.processor.TaskProcessor - [c0/c79244] Cached process > COLLAPSE_GTEX_ENSEMBL
+Jul-01 17:26:36.019 [Actor Thread 17] INFO  nextflow.processor.TaskProcessor - [b5/b974bc] Cached process > GTEX_ENTREZ_CONV
+Jul-01 17:26:36.042 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [21/7a1b03] Cached process > COLLAPSE_GTEX_SYMBOL
+Jul-01 17:26:36.137 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [c5/23cde1] Cached process > NORMALIZE_GTEX
+Jul-01 17:26:36.168 [Actor Thread 15] INFO  nextflow.processor.TaskProcessor - [d1/8fe6d3] Cached process > GTEX_SYMBOL_CONV
+Jul-01 17:26:36.236 [Actor Thread 15] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-01 17:26:36.558 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [4d/44be2d] Cached process > PARSE_HIPATHIA
+Jul-01 17:26:36.603 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [f8/9ed223] Cached process > HIPATHIA_CONV
+Jul-01 17:26:36.620 [Actor Thread 17] INFO  nextflow.processor.TaskProcessor - [e8/6b3ba7] Cached process > CIRCUIT_ACTIVITY_GTEX (1)
+Jul-01 17:26:36.629 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [60/cae755] Cached process > CIRCUIT_ACTIVITY_GTEX (2)
+Jul-01 17:26:36.669 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [1a/0efd06] Cached process > ANNOTATE_HIPATHIA
+Jul-01 17:26:36.702 [Actor Thread 17] INFO  nextflow.processor.TaskProcessor - [e4/d1b640] Cached process > CIRCUIT_ACTIVITY_GTEX (3)
+Jul-01 17:26:36.735 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [eb/8a4bd7] Cached process > CIRCUIT_ACTIVITY_GTEX (4)
+Jul-01 17:26:36.768 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [9a/67142a] Cached process > CIRCUIT_ACTIVITY_GTEX (5)
+Jul-01 17:26:36.790 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [5c/91fb1e] Cached process > CIRCUIT_ACTIVITY_GTEX (6)
+Jul-01 17:26:36.854 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [62/115988] Cached process > CIRCUIT_ACTIVITY_GTEX (7)
+Jul-01 17:26:36.865 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [a8/e3a1ff] Cached process > CIRCUIT_ACTIVITY_GTEX (8)
+Jul-01 17:26:36.916 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [06/aab665] Cached process > CIRCUIT_ACTIVITY_GTEX (9)
+Jul-01 17:26:36.926 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [38/e8bebd] Cached process > CIRCUIT_ACTIVITY_GTEX (10)
+Jul-01 17:26:37.013 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [c2/6ee0db] Cached process > CIRCUIT_ACTIVITY_GTEX (11)
+Jul-01 17:26:37.022 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [a3/f1cf85] Cached process > CIRCUIT_ACTIVITY_GTEX (12)
+Jul-01 17:26:37.106 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [2a/3637af] Cached process > CIRCUIT_ACTIVITY_GTEX (13)
+Jul-01 17:26:37.116 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [81/d25640] Cached process > CIRCUIT_ACTIVITY_GTEX (14)
+Jul-01 17:26:37.131 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [d6/33ed4d] Cached process > CIRCUIT_ACTIVITY_GTEX (15)
+Jul-01 17:26:37.257 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [04/6a19f6] Cached process > CIRCUIT_ACTIVITY_GTEX (16)
+Jul-01 17:26:37.295 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [73/d1515d] Cached process > CIRCUIT_ACTIVITY_GTEX (17)
+Jul-01 17:26:37.360 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [c2/85d7b2] Cached process > CIRCUIT_ACTIVITY_GTEX (18)
+Jul-01 17:26:37.409 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [e3/6c7bd1] Cached process > CIRCUIT_ACTIVITY_GTEX (19)
+Jul-01 17:26:37.428 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [aa/53235a] Cached process > CIRCUIT_ACTIVITY_GTEX (20)
+Jul-01 17:26:37.501 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [fb/17465b] Cached process > CIRCUIT_ACTIVITY_GTEX (21)
+Jul-01 17:26:37.510 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [4c/2a36f3] Cached process > CIRCUIT_ACTIVITY_GTEX (22)
+Jul-01 17:26:37.584 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [5d/355faa] Cached process > CIRCUIT_ACTIVITY_GTEX (23)
+Jul-01 17:26:37.593 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [6c/9e7e11] Cached process > CIRCUIT_ACTIVITY_GTEX (24)
+Jul-01 17:26:37.686 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [4b/2c6a39] Cached process > CIRCUIT_ACTIVITY_GTEX (26)
+Jul-01 17:26:37.696 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [6d/1b6f7c] Cached process > CIRCUIT_ACTIVITY_GTEX (25)
+Jul-01 17:26:37.772 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [31/d93419] Cached process > CIRCUIT_ACTIVITY_GTEX (28)
+Jul-01 17:26:37.785 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [6a/ac5aa6] Cached process > CIRCUIT_ACTIVITY_GTEX (27)
+Jul-01 17:26:37.858 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [f8/fc82ac] Cached process > CIRCUIT_ACTIVITY_GTEX (29)
+Jul-01 17:26:37.864 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [bf/5f89cf] Cached process > CIRCUIT_ACTIVITY_GTEX (30)
+Jul-01 17:26:37.956 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [03/ad50d1] Cached process > CIRCUIT_ACTIVITY_GTEX (31)
+Jul-01 17:26:37.963 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [66/69a32f] Cached process > CIRCUIT_ACTIVITY_GTEX (32)
+Jul-01 17:26:38.038 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [6e/e4bd8a] Cached process > CIRCUIT_ACTIVITY_GTEX (34)
+Jul-01 17:26:38.044 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [7e/8e81db] Cached process > CIRCUIT_ACTIVITY_GTEX (33)
+Jul-01 17:26:38.125 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [29/491bc3] Cached process > CIRCUIT_ACTIVITY_GTEX (36)
+Jul-01 17:26:38.133 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [44/d9a3df] Cached process > CIRCUIT_ACTIVITY_GTEX (35)
+Jul-01 17:26:38.227 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [7f/933ff2] Cached process > CIRCUIT_ACTIVITY_GTEX (37)
+Jul-01 17:26:38.234 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [83/631120] Cached process > CIRCUIT_ACTIVITY_GTEX (38)
+Jul-01 17:26:38.248 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [7c/edb37d] Cached process > CIRCUIT_ACTIVITY_GTEX (39)
+Jul-01 17:26:38.347 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [9c/ef6121] Cached process > CIRCUIT_ACTIVITY_GTEX (40)
+Jul-01 17:26:38.366 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [80/2b7fed] Cached process > CIRCUIT_ACTIVITY_GTEX (41)
+Jul-01 17:26:38.416 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [7f/c17c98] Cached process > CIRCUIT_ACTIVITY_GTEX (42)
+Jul-01 17:26:38.423 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [05/fe44c9] Cached process > CIRCUIT_ACTIVITY_GTEX (43)
+Jul-01 17:26:38.512 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [53/958f57] Cached process > CIRCUIT_ACTIVITY_GTEX (45)
+Jul-01 17:26:38.520 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [fa/e102c1] Cached process > CIRCUIT_ACTIVITY_GTEX (44)
+Jul-01 17:26:38.584 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [99/742264] Cached process > CIRCUIT_ACTIVITY_GTEX (46)
+Jul-01 17:26:38.595 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [5f/9b3dd6] Cached process > CIRCUIT_ACTIVITY_GTEX (47)
+Jul-01 17:26:38.683 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [56/b64fdb] Cached process > CIRCUIT_ACTIVITY_GTEX (48)
+Jul-01 17:26:38.692 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [5f/a3e357] Cached process > CIRCUIT_ACTIVITY_GTEX (49)
+Jul-01 17:26:38.771 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [8e/ebb03d] Cached process > CIRCUIT_ACTIVITY_GTEX (50)
+Jul-01 17:26:38.778 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [e6/36ff84] Cached process > CIRCUIT_ACTIVITY_GTEX (51)
+Jul-01 17:26:38.862 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [85/740223] Cached process > CIRCUIT_ACTIVITY_GTEX (53)
+Jul-01 17:26:38.870 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [2d/8149e6] Cached process > CIRCUIT_ACTIVITY_GTEX (52)
+Jul-01 17:26:38.943 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [9f/7dbb92] Cached process > CIRCUIT_ACTIVITY_GTEX (54)
+Jul-01 17:26:38.953 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [63/b94a8b] Cached process > CIRCUIT_ACTIVITY_GTEX (55)
+Jul-01 17:26:39.043 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [bf/3e1c60] Cached process > CIRCUIT_ACTIVITY_GTEX (56)
+Jul-01 17:26:39.057 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [f2/6db128] Cached process > CIRCUIT_ACTIVITY_GTEX (57)
+Jul-01 17:26:39.106 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [99/3c11dc] Cached process > CIRCUIT_ACTIVITY_GTEX (59)
+Jul-01 17:26:39.110 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [2e/6d5ffb] Cached process > CIRCUIT_ACTIVITY_GTEX (58)
+Jul-01 17:26:39.166 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [5d/f51014] Cached process > CIRCUIT_ACTIVITY_GTEX (60)
+Jul-01 17:26:39.173 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [70/c51767] Cached process > CIRCUIT_ACTIVITY_GTEX (61)
+Jul-01 17:26:39.197 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [90/56e00d] Cached process > CIRCUIT_ACTIVITY_GTEX (62)
+Jul-01 17:26:39.198 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [71/477c01] Cached process > CIRCUIT_ACTIVITY_GTEX (63)
+Jul-01 17:26:39.243 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [96/4b0751] Cached process > CIRCUIT_ACTIVITY_GTEX (64)
+Jul-01 17:26:39.260 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [37/b3527c] Cached process > CIRCUIT_ACTIVITY_GTEX (65)
+Jul-01 17:26:39.309 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [e0/ffaa91] Cached process > CIRCUIT_ACTIVITY_GTEX (66)
+Jul-01 17:26:39.321 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [66/e79029] Cached process > CIRCUIT_ACTIVITY_GTEX (67)
+Jul-01 17:26:39.431 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [81/f888c4] Cached process > CIRCUIT_ACTIVITY_GTEX (68)
+Jul-01 17:26:39.440 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [1e/ed6691] Cached process > CIRCUIT_ACTIVITY_GTEX (69)
+Jul-01 17:26:39.514 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [86/ea7e41] Cached process > CIRCUIT_ACTIVITY_GTEX (70)
+Jul-01 17:26:39.515 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [2e/c53557] Cached process > CIRCUIT_ACTIVITY_GTEX (71)
+Jul-01 17:26:39.552 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [ca/ad693b] Cached process > CIRCUIT_ACTIVITY_GTEX (73)
+Jul-01 17:26:39.554 [Actor Thread 4] INFO  nextflow.processor.TaskProcessor - [f5/511d5f] Cached process > CIRCUIT_ACTIVITY_GTEX (72)
+Jul-01 17:26:39.612 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [6c/09eb91] Cached process > CIRCUIT_ACTIVITY_GTEX (74)
+Jul-01 17:26:39.657 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [c9/27bd83] Cached process > CIRCUIT_ACTIVITY_GTEX (75)
+Jul-01 17:26:39.676 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [42/a7beb7] Cached process > CIRCUIT_ACTIVITY_GTEX (76)
+Jul-01 17:26:39.703 [Actor Thread 5] INFO  nextflow.processor.TaskProcessor - [ba/04cf97] Cached process > CIRCUIT_ACTIVITY_GTEX (77)
+Jul-01 17:26:39.723 [Actor Thread 18] INFO  nextflow.processor.TaskProcessor - [37/770046] Cached process > CIRCUIT_ACTIVITY_GTEX (78)
+Jul-01 17:26:39.743 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [0b/2ad2e7] Cached process > CIRCUIT_ACTIVITY_GTEX (79)
+Jul-01 17:26:39.799 [Actor Thread 2] INFO  nextflow.processor.TaskProcessor - [f2/7a6f5e] Cached process > CONCATENATE_CIRCUIT_ACTIVITIES
+Jul-01 17:26:40.515 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process CREATE_DREXML_ENV (1) > jobId: 2043181; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/c0/5656e3b94b4a172ca23cdb5eb17639
+Jul-01 17:26:40.516 [Task submitter] INFO  nextflow.Session - [c0/5656e3] Submitted process > CREATE_DREXML_ENV (1)
+Jul-01 17:26:44.723 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 2043181; id: 89; name: CREATE_DREXML_ENV (1); status: COMPLETED; exit: 0; error: -; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/c0/5656e3b94b4a172ca23cdb5eb17639 started: 1719847604678; exited: 2024-07-01T15:26:42Z; ]
+Jul-01 17:26:44.724 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+Jul-01 17:26:44.792 [Actor Thread 16] DEBUG nextflow.container.SingularityCache - Singularity found local store for image=docker://dlopezbioinfo/dr-pipeline:drexml-master-1db6105; path=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/singularity/dlopezbioinfo-dr-pipeline-drexml-master-1db6105.img
+Jul-01 17:26:44.970 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process RUN_DREXML (1) > jobId: 2043182; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/ac/25e86bcf3b8b5f24a5b6a877dada51
+Jul-01 17:26:44.970 [Task submitter] INFO  nextflow.Session - [ac/25e86b] Submitted process > RUN_DREXML (1)
+Jul-01 17:30:24.693 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 2043182; id: 90; name: RUN_DREXML (1); status: COMPLETED; exit: 0; error: -; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/ac/25e86bcf3b8b5f24a5b6a877dada51 started: 1719847609676; exited: 2024-07-01T15:30:21Z; ]
+Jul-01 17:30:24.784 [Task submitter] DEBUG nextflow.executor.GridTaskHandler - [SLURM] submitted process PLOT_DREXML (1) > jobId: 2043183; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/c8/9c8b32f58e4560b10d3e06a5347497
+Jul-01 17:30:24.784 [Task submitter] INFO  nextflow.Session - [c8/9c8b32] Submitted process > PLOT_DREXML (1)
+Jul-01 17:30:34.695 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[jobId: 2043183; id: 91; name: PLOT_DREXML (1); status: COMPLETED; exit: 0; error: -; workDir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/work/c8/9c8b32f58e4560b10d3e06a5347497 started: 1719847829691; exited: 2024-07-01T15:30:33Z; ]
+Jul-01 17:30:34.713 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jul-01 17:30:39.691 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: slurm) - terminating tasks monitor poll loop
+Jul-01 17:30:39.691 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jul-01 17:30:39.705 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jul-01 17:30:39.705 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jul-01 17:30:39.710 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=3; failedCount=0; ignoredCount=0; cachedCount=88; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=3h 6m 10s; failedDuration=0ms; cachedDuration=56m 21s;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=52; peakMemory=370 GB; ]
+Jul-01 17:30:39.710 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jul-01 17:30:39.723 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jul-01 17:30:40.766 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jul-01 17:30:41.134 [main] WARN  nextflow.dag.GraphvizRenderer - Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+Jul-01 17:30:41.448 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jul-01 17:30:41.627 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jul-01 17:30:41.627 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

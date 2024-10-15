@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#SBATCH --job-name=norm_hipa_gtex
+#SBATCH --mail-type=END
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --mem=300G
+#SBATCH --time=1-24:00:00
+#SBATCH --output=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/out/dr_male_gtex_%A_%a.out
+#SBATCH --error=/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/err/dr_male_gtex_%A_%a.err
+#SBATCH --array=1-9%1
+#SBATCH --export=ALL
+######################
+# Begin work section #
+#####################
+
+eval "$(conda shell.bash hook)"
+conda activate my_r_environment
+
+$(head -${SLURM_ARRAY_TASK_ID} /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/09_4_drexml_gtex/09_4_drexml_gtex_male.cmd | tail -1)

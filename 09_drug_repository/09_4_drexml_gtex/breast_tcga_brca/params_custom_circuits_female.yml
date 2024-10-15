@@ -1,0 +1,15 @@
+# output folder
+output_folder: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_4_drexml_gtex/breast_tcga_brca/breast_tcga_brca_female"
+#Drugbank compressed XML file
+drugbank: "https://zenodo.org/records/7969017/files/drugbank-v050108.xml.gz"
+# The Anatomical Therapeutic Chemical (ATC) Classification table
+atc: "https://zenodo.org/records/7969017/files/ATC.csv.gz"
+# HiPathia's list of physiological KEGG signaling pathways with GO/Uniprot functional annotations
+phys_paths: "https://zenodo.org/records/7969017/files/physiological_paths.tsv"
+# The Genotype-Tissue Expression (GTEx) RNA-Seq gene read counts
+gtex: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_1_genexpresion_gtex_tiss_ctrol/gtex_geneexp_female_Breast.tsv"
+# Hipathia disease map circuit file. Uncomment to use a custom disease map list of circuits
+disease_map_circuits: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_2_circuits_sign_limma_tumvsctrl/circuits_female_tcga_brca.tsv"
+# Uncomment the following line to feed drexml with a custom gene target list (skip drugbank preprocess)
+drexml_target_genes: "/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/results/09_drug_repository/09_3_drugbank_used/09_3_drugbank_gene_targets_tcga_brca.tsv"
+
