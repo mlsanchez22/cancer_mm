@@ -1,9 +1,0 @@
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_brca.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_coad.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_esca.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_lgg.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_luad.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_lusc.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_paad.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_skcm.sh
-/mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/04_mm_ko_drug_used/04_3_pathvals_ko_drug_used/04_3_cmd_project/tcga_stad.sh
