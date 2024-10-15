@@ -1,0 +1,372 @@
+---
+title: "Conversion tools"
+author: "Miriam Paya"
+date: "2024-04-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## A quick comparison of gene id conversion tools
+
+On sequencing experiments of human data, genes are usually reported with the identifiers of ENSEMBL. However, these identifiers are not human readable as gene symbols and the tool hipathia requires the Entrez Gene IDs. Thus, a need arises to convert the ENSEMBL IDs into the other type of identifiers. An optimal conversion model would assign a single gene to each ensembl feature or, at least, minimize redundancies and inaccuracies. Some of these are due to the nature the identifiers and the assignment method. 
+
+On a quick view, ensembl IDs for genes are quite variable, their IDs may change if the gene model is changed with a subsequent discontinuation of former IDs. As a result, multiple ensembl features are linked to a same gene and, on the opposite, multiple genes target a same ensembl. Manual inspection also found ensembl features spanning multiple genes. Further inspection may be performed (e.g. are all ensembl ids with a same gene conversion reflecting a same genome location or are different genome locations annotated after the same gene?), but for the purpose of this inspection this is not required.
+Gene symbols, the "human readable" version of gene nomenclature, usually respond to how the scientific community has been naming the gene, suffering thus evolution as science made new discoveries that involved an update on their names (as an example). In consequence, most genes have received multiple names. For unification, a representative symbol has been selected and the rest remain as aliases. Few exceptions remain of different genes receiving a same symbol. 
+Entrez Gene provides numeric identifiers that, besides being said to be the most stable ones, are the ones used in other key databases such as KEGG. 
+
+The goal here is to compare the performance of a few resources that provide gene ID conversions. Here, we'll use the R packages for biomart, org.hs.eg.db and annotation hub. The results from mygene coming from the python resource are imported. A good annotation table will be considered when duplicates and wrong assignments are minimized. We'll also take into account the coverage of genes present in the hipathia package.
+
+## Load resources
+
+```{r libraries}
+suppressMessages(library(tidyverse))
+suppressMessages(library(biomaRt))
+suppressMessages(library(org.Hs.eg.db))
+suppressMessages(library(hipathia))
+```
+
+
+```{r}
+# hipathia resources
+pathways <- load_pathways("hsa")
+allhipgenes <- length(pathways$all.genes)
+allhipgenes
+```
+
+```{r}
+names_dict <- c("ensembl_id" = "ensembl_gene_id", 
+                "entrez_id" = "entrezgene_id", 
+                "symbol_id" = "hgnc_symbol", 
+                "ensembl_id" = "ensembl_id", 
+                "entrez_id" = "gene_id", 
+                "symbol_id" = "symbol")
+basic_inspection <- function(conv, dfsource, pathways) {
+  g2sdup <- conv %>% dplyr::select(entrez_id, symbol_id) %>% unique() %>% pull(symbol_id) %>% duplicated() %>% sum()
+  e2sdup <- conv %>% dplyr::select(ensembl_id, symbol_id) %>% unique() %>% pull(symbol_id) %>% duplicated() %>% sum()
+  e2gdup <- conv %>% dplyr::select(ensembl_id, entrez_id) %>% unique() %>% pull(entrez_id) %>% duplicated() %>% sum()
+  
+  cat(paste(
+    paste("The", dfsource, "conversion table offers", nrow(conv), "combinations of ensembl-entrez-symbol."),
+    paste("There are", length(unique(conv$ensembl_id)), "unique ensembl gene IDs."),
+    paste(sum(duplicated(conv$ensembl_id)), "duplications in ensembl gene IDs."),
+    paste("There are", length(unique(conv$entrez_id)), "unique entrez gene IDs."),
+    paste(sum(duplicated(conv$entrez_id)), "duplications in entrez gene IDs."),
+    paste("There are", length(unique(conv$symbol_id)), "unique symbols."),
+    paste(sum(duplicated(conv$symbol_id)), "duplications in gene symbols."),
+    paste(""),
+    paste("As entrez2symbol, there are", g2sdup, "duplications in symbols."),
+    paste("As ensembl2symbol, there are", e2sdup, "duplications in symbols."),
+    paste("As ensembl2entrez, there are", e2gdup, "duplications in entrez genes."),
+    paste(""),
+    paste(length(intersect(conv$entrez_id, pathways$all.genes)), "hipathia genes covered."),
+    sep = "\n"))
+}
+```
+
+### Basic inspection of org.Hs.eg.db
+
+Load resources.
+
+```{r}
+# load conversion tables and add symbols to ensembl2EG conversions
+df1 <- org.Hs.egENSEMBL2EG %>% as.data.frame()
+df2 <- org.Hs.egSYMBOL %>% as.data.frame()
+orgdf <- left_join(df1, df2, by = "gene_id") %>% 
+  dplyr::rename(any_of(names_dict))
+```
+
+Look at basic metrics.
+```{r}
+libname <- "org.Hs.eg.db"
+basic_inspection(orgdf, libname, pathways)
+
+```
+
+Specific for hipathia and org.db.
+```{r}
+# total coverage of genes with ensembl_id
+length(intersect(df1$gene_id, pathways$all.genes))  # 3341
+# total coverage of genes with symbol
+length(intersect(df2$gene_id, pathways$all.genes))  # 3344
+
+# genes without ensembl gene id or symbol for hipathia
+orgnoenship <- intersect(pathways$all.genes, setdiff(df2$gene_id, df1$gene_id))
+dplyr::filter(df2, gene_id %in% orgnoenship)
+orgnosymbolhip <- setdiff(pathways$all.genes, df2$gene_id)
+```
+
+Examples of duplications.
+```{r}
+# ensembl dupes
+orgdf %>% dplyr::filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+# entrez dupes
+orgdf %>% dplyr::filter(entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(entrez_id) %>% head()
+# mutually dupes
+dup <- orgdf %>% dplyr::filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)], 
+                        entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(entrez_id) %>% head()
+dup
+rbind(
+  orgdf %>% dplyr::filter(ensembl_id %in% dup$ensembl_id) %>% arrange(ensembl_id) %>% head(), 
+  orgdf %>% dplyr::filter(symbol_id %in% dup$symbol_id)
+) %>% distinct() %>% arrange(symbol_id, ensembl_id)
+
+```
+In the last table the issue of assigning multiple genes to a same ensembl reveals that some of them are actually solved since a single symbol to a duplicated ensembl entry would discard the alternate assignment.
+
+### Basic inspection of biomaRt
+
+Since biomart requires specific values, I'm using the previously converted ensembl ids.
+
+```{r}
+in_id <- "ensembl_gene_id"
+out_id <- c("entrezgene_id", "hgnc_symbol")
+
+mart <- useEnsembl(biomart = "ensembl", 
+                   dataset = "hsapiens_gene_ensembl")
+mart_res <- getBM(attributes = c(in_id, out_id),
+                  filters    = in_id,
+                  values     = unique(orgdf$ensembl_id), 
+                  mart       = mart)
+mart_res <- mart_res %>% dplyr::rename(any_of(names_dict)) %>% 
+  mutate(entrez_id = as.character(entrez_id))
+
+# filter rows with any missing values
+cat("From",nrow(mart_res),"entries,",sum(is.na(mart_res$entrez_id)), 
+    "entrez and",sum(mart_res$symbol_id == ""),"symbols are missing.")
+
+martdf <- mart_res %>% dplyr::filter(!is.na(entrez_id), symbol_id != "")
+```
+
+```{r}
+
+libname <- "biomaRt"
+basic_inspection(martdf, libname, pathways)
+
+```
+
+```{r}
+# ensembl dupes
+martdf %>% filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+# symbol dupes
+martdf %>% filter(symbol_id %in% .$symbol_id[duplicated(.$symbol_id)]) %>% arrange(symbol_id) %>% head()
+
+# mutually dupes
+dup <- martdf %>% dplyr::filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)], 
+                        entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(symbol_id) %>% head()
+dup
+rbind(
+  martdf %>% dplyr::filter(ensembl_id %in% dup$ensembl_id) %>% arrange(ensembl_id) %>% head(), 
+  martdf %>% dplyr::filter(entrez_id %in% dup$entrez_id)
+) %>% distinct() %>% arrange(symbol_id, ensembl_id)
+```
+Here, the issue is that a single symbol is given multiple entrez ids. In this example, the pairing ensembl-symbol is less divided than in the case of org database. 
+
+### Basic inspection of AnnotationHub
+
+```{r}
+suppressMessages(library(AnnotationHub))
+
+ah <- AnnotationHub()
+human_orgdb <- query(ah, c("Homo sapiens", "OrgDb"))
+human_orgdb
+human_orgdb <- human_orgdb[["AH114084"]]
+hubres <- AnnotationDbi::select(human_orgdb, 
+                                unique(orgdf$ensembl_id), 
+                                c("SYMBOL", "ENTREZID"), 
+                                "ENSEMBL")
+colnames(hubres) <- c("ensembl_id", "symbol_id", "entrez_id")
+```
+
+
+```{r}
+
+libname <- "AnnotationHub"
+basic_inspection(hubres, libname, pathways)
+
+```
+
+
+```{r}
+all.equal(hubres %>% arrange(entrez_id, ensembl_id), 
+          orgdf[,colnames(hubres)] %>% arrange(entrez_id, ensembl_id))
+```
+
+It's identical to org.Hs.eg.db
+
+
+### inter-comparisons between org.Hs.eg.db and biomaRt
+
+```{r}
+# org ensembl duplicates in mart
+martdf %>% filter(ensembl_id %in% orgdf$ensembl_id[duplicated(orgdf$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+
+# mart ensembl duplicates in org
+orgdf %>% filter(ensembl_id %in% martdf$ensembl_id[duplicated(martdf$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+
+# interrelated results in both libs for first 2 duplicated ensembl genes in martdf (ending in 77 and 88)
+d <- martdf$ensembl_id[duplicated(martdf$ensembl_id)][1:2]
+rbind(
+  martdf %>% filter(ensembl_id %in% d) %>% add_column(lib = "mart"), 
+  orgdf %>% filter(ensembl_id %in% d) %>% add_column(lib = "org"), 
+  orgdf %>% filter(entrez_id %in% filter(martdf, ensembl_id %in% d)$entrez_id) %>% add_column(lib = "org"), 
+  martdf %>% filter(symbol_id %in% filter(orgdf, ensembl_id %in% d)$symbol_id) %>% add_column(lib = "mart")
+) %>% distinct() %>% arrange(ensembl_id, symbol_id, entrez_id)
+```
+
+
+### Combination of biomart and org
+
+Select symbol conversions to ensembl from biomaRt and complete the annotation with org.db if not retrieved by biomart.
+
+```{r}
+# prepare org conversion tables
+df1 <- org.Hs.egENSEMBL2EG %>% as.data.frame()
+df2 <- org.Hs.egSYMBOL %>% as.data.frame()
+orgdf <- inner_join(df1, df2, by = "gene_id") %>% dplyr::rename(any_of(names_dict)) %>% 
+  dplyr::rename(any_of(names_dict))
+# prepare biomart ensembl2symbol conversion table
+mart_res <- getBM(attributes = c("ensembl_gene_id", "hgnc_symbol"),
+                  filters    = "ensembl_gene_id",
+                  values     = unique(orgdf$ensembl_id), 
+                  mart       = mart)
+
+# 1. add column with entrez ids from org
+orgmart <- mart_res %>% dplyr::rename(any_of(names_dict)) %>% 
+  inner_join(orgdf, by = c("ensembl_id", "symbol_id"))
+# 2. for genes with assignments in mart not present in org, fill entrez directly
+martmissing <- mart_res %>% 
+  dplyr::filter(! ensembl_gene_id %in% orgmart$ensembl_id) %>% 
+  inner_join(df2, by = c("hgnc_symbol" = "symbol")) %>% 
+  dplyr::rename(any_of(names_dict))
+orgmart <- orgmart %>% add_row(martmissing)
+# 3. add genes not assigned by mart but assigned in org
+orgmissing <- orgdf %>% dplyr::filter(! ensembl_id %in% orgmart$ensembl_id)
+orgmart <- orgmart %>% add_row(orgmissing)
+# 4. remove undefined loci if defined symbol is present
+orgmart <- orgmart %>% mutate(is_loc = str_detect(symbol_id, "^LOC")) %>% 
+  group_by(ensembl_id) %>% mutate(rm_loc = if_else(sum(is_loc) < length(is_loc), TRUE, FALSE)) %>% ungroup()
+orgmart <- orgmart %>% dplyr::filter(!(is_loc & rm_loc)) %>% dplyr::select(-ends_with("loc"))
+# 5. remove duplicate entries
+orgmart <- orgmart %>% group_by(ensembl_id) %>% mutate(n_ens = n()) %>% ungroup() %>% 
+  group_by(entrez_id) %>% mutate(n_entrez = n()) %>% ungroup() %>% 
+  dplyr::filter(n_ens == 1 | n_entrez == 1) %>% dplyr::select(-starts_with("n_"))
+
+cat(sum(martmissing$entrez_id %in% pathways$all.genes), "hipathia genes added by mart in step 2")
+cat(sum(orgmissing$entrez_id %in% pathways$all.genes), "hipathia genes added by org in step 3")
+
+```
+
+```{r}
+
+libname <- "biomart and org"
+basic_inspection(orgmart, libname, pathways)
+
+```
+
+```{r}
+# ensembl dupes
+orgmart %>% filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+# entrez dupes
+orgmart %>% filter(entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(entrez_id) %>% head()
+```
+
+The ratio of duplication is here reduced.
+
+
+### Basic inspection of mygene
+
+
+```{r}
+
+transtab <- "/media/mpaya/DATA/projects/2024_drexml_pipeline/tests/conv_tab/transTable2.tsv"
+mygene_raw <- read_tsv(transtab, show_col_types = F) %>% 
+  dplyr::select(ensembl_id = "query", entrez_id, symbol_id) %>% 
+  mutate(entrez_id = as.character(entrez_id))
+mygene <- mygene_raw %>% dplyr::filter(!is.na(entrez_id), !is.na(symbol_id))
+```
+
+
+```{r}
+
+libname <- "mygene"
+basic_inspection(mygene, libname, pathways)
+
+```
+
+```{r}
+# ensembl dupes
+mygene %>% dplyr::filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)]) %>% arrange(ensembl_id) %>% head()
+# entrez dupes
+mygene %>% dplyr::filter(entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(entrez_id) %>% head()
+
+# mutually dupes ensembl and SYMBOL
+dup <- mygene %>% dplyr::filter(ensembl_id %in% .$ensembl_id[duplicated(.$ensembl_id)], 
+                        entrez_id %in% .$entrez_id[duplicated(.$entrez_id)]) %>% arrange(entrez_id) %>% head()
+dup
+rbind(
+  mygene %>% dplyr::filter(ensembl_id %in% dup$ensembl_id) %>% arrange(ensembl_id) %>% head(), 
+  mygene %>% dplyr::filter(symbol_id %in% dup$symbol_id)
+) %>% distinct() %>% arrange(symbol_id, ensembl_id)
+```
+
+### final thoughts
+
+To summarize: 
+* biomart seems to gather symbols properly for ENSG but entrez are wrongly mapped
+* org.db seems to have good entrez-symbol mappings but multiple/innacurate entrez per ENSG
+* AnnotationHub has the same results as org.db
+* the combination of biomart and org.db strengths followed by duplication filtering reduce the above issues
+* mygene is consistent in entrez-symbol conversion but also presents some double duplications for ENSG
+
+## Comparison Plots
+
+Venn diagrams for translated IDs and specific conversions.
+
+```{r venns}
+library(ggVennDiagram)
+
+full_conv <- rbind(
+  orgdf %>% add_column(method = "org.db", .before = 1), 
+  martdf %>% add_column(method = "biomart"), 
+  orgmart %>% add_column(method = "mart-org"), 
+  mygene %>% add_column(method = "mygene")
+)
+full_conv <- full_conv %>% unite(conversion, -method, remove = F) %>% 
+  mutate(hip_gene = ifelse(entrez_id %in% pathways$all.genes, entrez_id, NA)) %>% 
+  mutate(hip_conv = ifelse(entrez_id %in% pathways$all.genes, conversion, NA))
+
+vennlist <- lapply(colnames(full_conv)[-1], function(x)
+                   ggVennDiagram(split(full_conv[[x]], full_conv$method), label = "count", 
+                   edge_size = 0.5, label_size = 2) + ggtitle(x)) 
+
+gridExtra::grid.arrange(grobs = vennlist)
+```
+
+And some bar plots to indicate the duplication of features.
+
+```{r bars}
+
+uniq_cnt <- full_conv %>% dplyr::select(-contains("conv")) %>% group_by(method) %>% 
+  summarize_all(\(x) length(unique(na.omit(x)))) %>% ungroup() %>% 
+  pivot_longer(-method, names_to = "gene_type", values_to = "n_genes") %>% 
+  add_column(count_type = "unique")
+dupe_cnt <- full_conv %>% dplyr::select(-contains("conv")) %>% group_by(method) %>% 
+  summarize_all(\(x) sum(duplicated(na.omit(x)))) %>% ungroup() %>% 
+  pivot_longer(-method, names_to = "gene_type", values_to = "n_genes") %>% 
+  add_column(count_type = "duplicated")
+
+joined_cnt <- rbind(uniq_cnt, dupe_cnt) %>% 
+  mutate(count_type = factor(count_type, levels = c("unique", "duplicated")), 
+         gene_type = factor(gene_type, levels = c("ensembl_id", "symbol_id", "entrez_id", "hip_gene")))
+
+p <- ggplot(joined_cnt) + 
+  geom_col(aes(x = method, y = n_genes, fill = method)) + 
+  geom_text(aes(x = method, y = n_genes, label = n_genes)) + 
+  facet_grid(gene_type ~ count_type, scales = "free") + 
+  theme_bw()
+p
+```
+

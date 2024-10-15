@@ -1,0 +1,2 @@
+2024-06-28 12:20:41	-	prickly_meninsky	-	aa412c186b3614ecdbb3717ea22f304a	a4e86d5e-64cf-4ec5-a732-957030bbcbd0	nextflow run normalize_expr.nf ./containe/prueba.txt /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/results_pipeline/
+2024-06-28 12:22:34	-	modest_carlsson	-	aa412c186b3614ecdbb3717ea22f304a	5291907b-435b-4cb6-9edb-65a4a42ba6d5	nextflow run normalize_expr.nf ./containe/prueba.txt ./containe

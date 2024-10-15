@@ -1,0 +1,70 @@
+Jun-28 12:22:34.074 [main] DEBUG nextflow.cli.Launcher - $> nextflow run normalize_expr.nf ./containe/prueba.txt ./containe
+Jun-28 12:22:34.169 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+Jun-28 12:22:34.190 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/mlopez/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+Jun-28 12:22:34.206 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-28 12:22:34.207 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-28 12:22:34.210 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+Jun-28 12:22:34.227 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-28 12:22:34.296 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+Jun-28 12:22:34.313 [main] DEBUG nextflow.cli.CmdRun - Launching `normalize_expr.nf` [modest_carlsson] DSL2 - revision: aa412c186b
+Jun-28 12:22:34.315 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-28 12:22:34.315 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+Jun-28 12:22:34.383 [main] DEBUG nextflow.Session - Session UUID: 5291907b-435b-4cb6-9edb-65a4a42ba6d5
+Jun-28 12:22:34.383 [main] DEBUG nextflow.Session - Run name: modest_carlsson
+Jun-28 12:22:34.384 [main] DEBUG nextflow.Session - Executor pool size: 4
+Jun-28 12:22:34.394 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jun-28 12:22:34.426 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (08:19 CEST)
+  System: Linux 4.18.0-348.12.2.el8_5.x86_64
+  Runtime: Groovy 4.0.21 on OpenJDK 64-Bit Server VM 21-internal-adhoc.conda.src
+  Encoding: UTF-8 (UTF-8)
+  Process: 1697940@login02 [10.3.0.22]
+  CPUs: 4 - Mem: 47 GB (38.1 GB) - Swap: 2.5 GB (2.4 GB) - Virtual threads ON
+Jun-28 12:22:34.456 [main] DEBUG nextflow.Session - Work-dir: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/modules/work [lustre]
+Jun-28 12:22:34.457 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/modules/bin
+Jun-28 12:22:34.472 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-28 12:22:34.486 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Jun-28 12:22:34.518 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jun-28 12:22:34.528 [main] DEBUG nextflow.util.CustomPoolFactory - Creating virtual thread pool
+Jun-28 12:22:34.647 [main] DEBUG nextflow.Session - Session start
+Jun-28 12:22:35.095 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-28 12:22:35.109 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/mlopez/.nextflow/secrets/store.json
+Jun-28 12:22:35.117 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@60e06f7d] - activable => nextflow.secret.LocalSecretsProvider@60e06f7d
+Jun-28 12:22:35.132 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_bf0306db0f66030e: /mnt/lustre/scratch/CBRA/research/projects/tcga_mm/code/09_drug_repository/dr-pipeline/modules/normalize_expr.nf
+Jun-28 12:22:35.133 [main] DEBUG nextflow.Session - Session aborted -- Cause: =============================================================================
+=                                WARNING                                    =
+= You are running this script using DSL2 syntax, however it does not        = 
+= contain any 'workflow' definition so there's nothing for Nextflow to run. =
+=                                                                           =
+= If this script was written using Nextflow DSL1 syntax, please add the     = 
+= setting 'nextflow.enable.dsl=1' to the nextflow.config file or use the    =
+= command-line option '-dsl1' when running the pipeline.                    =
+=                                                                           =
+= More details at this link: https://www.nextflow.io/docs/latest/dsl2.html  =
+=============================================================================
+
+Jun-28 12:22:35.144 [main] DEBUG nextflow.cli.Launcher - Operation aborted
+nextflow.exception.AbortOperationException: =============================================================================
+=                                WARNING                                    =
+= You are running this script using DSL2 syntax, however it does not        = 
+= contain any 'workflow' definition so there's nothing for Nextflow to run. =
+=                                                                           =
+= If this script was written using Nextflow DSL1 syntax, please add the     = 
+= setting 'nextflow.enable.dsl=1' to the nextflow.config file or use the    =
+= command-line option '-dsl1' when running the pipeline.                    =
+=                                                                           =
+= More details at this link: https://www.nextflow.io/docs/latest/dsl2.html  =
+=============================================================================
+
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run0(BaseScript.groovy:191)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run(BaseScript.groovy:209)
+	at nextflow.script.ScriptParser.runScript(ScriptParser.groovy:236)
+	at nextflow.script.ScriptRunner.run(ScriptRunner.groovy:243)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:138)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:372)
+	at nextflow.cli.Launcher.run(Launcher.groovy:503)
+	at nextflow.cli.Launcher.main(Launcher.groovy:657)

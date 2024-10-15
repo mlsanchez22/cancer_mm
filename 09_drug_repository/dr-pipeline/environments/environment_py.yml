@@ -1,0 +1,11 @@
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - biothings_client
+  - pandas
+  - click
+  - python
+  - procps-ng
+
